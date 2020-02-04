@@ -1,3 +1,2 @@
-
-web: python manage.py runserver
+web: gunicorn adv_project.wsgi:application --log-file -
 heroku config:set KEY=VALUE
