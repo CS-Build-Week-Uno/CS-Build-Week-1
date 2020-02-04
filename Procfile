@@ -1,3 +1,3 @@
 
-web: pythong manage.py runserver
+web: python manage.py runserver
 heroku config:set KEY=VALUE
