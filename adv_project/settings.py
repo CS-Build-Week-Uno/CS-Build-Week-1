@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import pusher
 from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -30,7 +31,14 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
+PUSHER_APP_ID=config('PUSHER_APP_ID')
+PUSHER_KEY=config('PUSHER_KEY')
+PUSHER_SECRET=config('PUSHER_SECRET')
+PUSHER_CLUSTER=config('PUSHER_CLUSTER')
+ssl=True
+
 INSTALLED_APPS = [
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
