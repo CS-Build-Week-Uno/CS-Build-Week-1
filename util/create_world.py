@@ -1,8 +1,11 @@
 from django.contrib.auth.models import User
 from adventure.models import Player, Room
-
+from util.sample_generator import World
 
 Room.objects.all().delete()
+
+world = World()
+world.generate_rooms(10, 10, 100)
 
 r_outside = Room(title="Outside Cave Entrance",
                  description="North of you, the cave mount beckons")
@@ -39,6 +42,8 @@ r_narrow.connectRooms(r_foyer, "w")
 
 r_narrow.connectRooms(r_treasure, "n")
 r_treasure.connectRooms(r_narrow, "s")
+
+world.print_rooms()
 
 players = Player.objects.all()
 for p in players:

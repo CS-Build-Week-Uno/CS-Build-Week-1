@@ -6,7 +6,6 @@
 # to see the world.
 import random
 
-
 class Room:
     def __init__(self, id, name, description, x, y):
         self.id = id
