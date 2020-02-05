@@ -6,6 +6,7 @@ from decouple import config
 from django.contrib.auth.models import User
 from .models import *
 from rest_framework.decorators import api_view
+from django.core import serializers
 import json
 
 # instantiate pusher
@@ -20,8 +21,13 @@ def initialize(request):
     uuid = player.uuid
     room = player.room()
     players = room.playerNames(player_id)
-    return JsonResponse({'uuid': uuid, 'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players}, safe=True)
+    return JsonResponse({'uuid': uuid, 'name': player.user.username, 'title': room.title, 'description': room.description, 'players': players}, safe=True)
 
+@api_view(["GET"])
+def get_rooms(request):
+    # rooms = Room.objects.all()
+    rooms = serializers.serialize("json", Room.objects.all())
+    return JsonResponse(rooms, safe=False)
 
 # @csrf_exempt
 @api_view(["POST"])
@@ -58,7 +64,6 @@ def move(request):
     else:
         players = room.playerNames(player_id)
         return JsonResponse({'name':player.user.username, 'title':room.title, 'description':room.description, 'players':players, 'error_msg':"You cannot move that way."}, safe=True)
-
 
 @csrf_exempt
 @api_view(["POST"])
