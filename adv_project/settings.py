@@ -158,3 +158,4 @@ django_heroku.settings(locals())
 
 if(config('DEBUG', cast=bool) == True):
     del DATABASES['default']['OPTIONS']['sslmode']
+    # del DATABASES['default']
