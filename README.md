@@ -207,4 +207,3 @@ It's up to you what data the request will return but the API request should be s
 ```
 curl -X GET -H 'Authorization: Token cc504e88ef659843b858d61c101ca9d4f0edf979' http://lambda-mud-test.herokuapp.com/api/adv/rooms/
 ```
-
